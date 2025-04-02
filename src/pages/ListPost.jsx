@@ -1,80 +1,52 @@
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export default function ListPost() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://fakestoreapi.com/products`)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data);
+            })
+    }, [])
     return (
         <>
             <main>
-                <div className="container mt-3">
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="https://picsum.photos/400/200?grayscale" className="img-fluid rounded-start" />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="https://picsum.photos/400/200?grayscale" className="img-fluid rounded-start" />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="https://picsum.photos/400/200?grayscale" className="img-fluid rounded-start" />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="https://picsum.photos/400/200?grayscale" className="img-fluid rounded-start" />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-3" >
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <img src="https://picsum.photos/400/200?grayscale" className="img-fluid rounded-start" />
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">Card title</h5>
-                                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
+                <div className="p-5 mb-4 bg-light rounded-3">
+                    <div className="container-fluid py-5">
+                        <h1 className="display-1 fw-bold">Our Products</h1>
+                        <p className="col-md-8 fs-4">
+                            Explore our wide range of products below. Find something you love and grab it now!
+                        </p>
                     </div>
                 </div>
+
+                <section>
+                    <div className="container">
+                        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                            {products.map(product => (
+                                <div className="col" key={product.id}>
+                                    <div className="card h-100" style={{ height: '350px' }}>
+                                        <Link to={`/products/${product.id}`}>
+                                            <img src={product.image} className="card-img-top" alt={product.title}
+                                                style={{ aspectRatio: 1, objectFit: 'cover' }} />
+                                        </Link>
+                                        <div className="card-body">
+                                            <h5 className="card-title">{product.title}</h5>
+                                            <p className="card-text">{product.price}</p>
+                                            <Link to={`/products/${product.id}`} className="btn btn-primary">
+                                                Buy Now
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                        </div>
+                    </div>
+                </section>
             </main >
         </>
     )
