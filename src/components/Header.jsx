@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import viteLogo from '/vite.svg';
 
 export default function Header() {
     return (
@@ -7,7 +8,7 @@ export default function Header() {
                 <nav className="navbar navbar-expand-sm navbar-light bg-light">
                     <div className="container">
                         <a className="navbar-brand" href="#">
-                            <img src={`https://picsum.photos/300/200?random`} width={150} alt="Brand Logo" />
+                            <img src={viteLogo} width={80} alt="Brand Logo" />
                         </a>
                         <button
                             className="navbar-toggler d-lg-none"

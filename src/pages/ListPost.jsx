@@ -29,14 +29,14 @@ export default function ListPost() {
                             {products.map(product => (
                                 <div className="col" key={product.id}>
                                     <div className="card h-100" style={{ height: '350px' }}>
-                                        <Link to={`/products/${product.id}`}>
+                                        <Link to={`/listposts/${product.id}`}>
                                             <img src={product.image} className="card-img-top" alt={product.title}
                                                 style={{ aspectRatio: 1, objectFit: 'cover' }} />
                                         </Link>
                                         <div className="card-body">
                                             <h5 className="card-title">{product.title}</h5>
                                             <p className="card-text">{product.price}</p>
-                                            <Link to={`/products/${product.id}`} className="btn btn-primary">
+                                            <Link to={`/listposts/${product.id}`} className="btn btn-primary">
                                                 Buy Now
                                             </Link>
                                         </div>
